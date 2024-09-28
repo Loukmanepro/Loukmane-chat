@@ -1,4 +1,4 @@
-const apiKey = 'your-openai-api-key'; // ضع مفتاح OpenAI API هنا
+const apiKey = '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'; // ضع مفتاح OpenAI API هنا
 
 async function sendMessage() {
     const message = document.getElementById('userMessage').value;
