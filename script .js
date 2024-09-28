@@ -1,38 +1,42 @@
-const apiKey = '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'; // ضع مفتاح OpenAI API هنا
+<div class="container">
+    <h1>AI Question Answering</h1>
+    <input type="text" id="question" placeholder="Type your question here...">
+    <button onclick="getAnswer()">Get Answer</button>
+    <div class="response" id="response"></div>
+</div>
 
-async function sendMessage() {
-    const message = document.getElementById('userMessage').value;
-    if (message === '') return;
+<script>
+    async function getAnswer() {
+        const question = document.getElementById('question').value;
+        const responseDiv = document.getElementById('response');
 
-    addMessageToChat('User', message);
-    document.getElementById('userMessage').value = '';
+        if (!question) {
+            responseDiv.innerHTML = "Please enter a question.";
+            return;
+        }
 
-    const response = await getAIResponse(message);
-    addMessageToChat('AI', response);
-}
+        const apiKey = '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'; // Replace with your actual API key
+        const apiUrl = 'https://api.open ai.com/answer'; // Replace with your actual API endpoint
 
-function addMessageToChat(sender, message) {
-    const messagesDiv = document.getElementById('messages');
-    const messageElement = document.createElement('div');
-    messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
-    messagesDiv.appendChild(messageElement);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-}
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({ question })
+            });
 
-async function getAIResponse(message) {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey}`
-        },
-        body: JSON.stringify({
-            model: 'gpt-4', // يمكنك استخدام gpt-3.5-turbo أو gpt-4
-            messages: [{role: 'user', content: message}],
-            max_tokens: 100
-        })
-    });
+            const data = await response.json();
+            responseDiv.innerHTML = data.answer || "No answer found.";
+        } catch (error) {
+            responseDiv.innerHTML = "Error fetching answer. Please try again.";
+            console.error('Error:', error);
+        }
+    }
+</script>
 
-    const data = await response.json();
-    return data.choices[0].message.content;
-}
+</body>
+</html>
+                
