@@ -3,62 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat with AI</title>
+    <title>AI Question Answering</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-        #chatbox {
-            width: 80%;
-            max-width: 600px;
-            background: #fff;
+            margin: 0;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        #messages {
-            height: 300px;
-            overflow-y: scroll;
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        #user-input {
-            display: flex;
+        h1 {
+            text-align: center;
         }
-        #user-input input {
+        input[type="text"] {
             width: 100%;
             padding: 10px;
+            margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
-            margin-right: 10px;
         }
-        #user-input button {
-            padding: 10px 20px;
-            border: none;
-            background: #007bff;
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
             color: white;
+            border: none;
             border-radius: 5px;
             cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .response {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <div id="chatbox">
-        <div id="messages"></div>
-        <div id="user-input">
-            <input type="text" id="userMessage" placeholder="Type your message...">
-            <button onclick="sendMessage()">Send</button>
-        </div>
-    </div>
-
-    <!-- ربط ملف JavaScript الخارجي -->
-    <script src="script.js"></script>
-</body>
-</html>
